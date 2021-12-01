@@ -1,0 +1,36 @@
+form {
+  background-color: rgb(201, 201, 201);
+  color: black;
+  width: 50%;
+  min-width: 500px;
+  border: 1px solid black;
+  border-radius: 15px;
+}
+
+ul {
+  margin-top: 30px;
+  list-style-type: none;
+}
+
+.required {
+  color: red;
+}
+
+textarea {
+  resize: none;
+}
+
+.note {
+  font-size: 1.3rem;
+}
+
+/*Set labels to fixed width to vertically align input fields*/
+label {
+  display: inline-block;
+  width: 70px;
+  text-align: end;
+}
+
+.message label {
+  vertical-align: top;
+}

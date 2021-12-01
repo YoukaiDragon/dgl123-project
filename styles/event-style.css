@@ -1,0 +1,66 @@
+h1, h2, h3 {
+  text-align: center;
+}
+
+.events {
+  display: flex;
+  justify-content: center;
+}
+
+.schedule {
+  flex-basis: 45%;
+}
+
+.schedule p {
+  text-align: center;
+}
+
+.register {
+  display: inline-block;
+  margin-left: 10%;
+  width: 30%;
+  background-color: rgba(173, 101, 60, 0.637);
+  border: 2px solid black;
+  border-radius: 15px;
+}
+
+.register a {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  color: white;
+}
+
+.register:hover {
+  background-color: rgb(177, 90, 55);
+}
+
+.register a:hover {
+  color: orange;
+}
+
+.house-games {
+  display: flex;
+  justify-content: space-around;
+}
+
+.house-games ul {
+  display: inline-block;
+  padding-left: 60px;
+  columns: 2;
+}
+
+/*
+  For responsive Layout
+  1 section used here because layout shifts, but does not break, going from medium to large screens
+*/
+@media (max-width: 600px) {
+  .events, .house-games {
+    flex-flow: column;
+    align-items: center;
+  }
+
+  .register {
+    width: 85%;
+  }
+}

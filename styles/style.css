@@ -1,0 +1,149 @@
+/* Size text and set main font families */
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: Arimo, sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: Volkhov, serif;
+}
+
+/* Remove underlines from all links */
+a {
+  text-decoration: none;
+}
+
+/* Main website Colours */
+body {
+  background-color: rgb(102, 75, 35);
+  color: rgb(255, 255, 255);
+}
+
+header, footer {
+  color: black;
+  background-color: rgb(243, 243, 243);
+  border: 2px solid black;
+  border-radius: 25px;
+}
+
+/* Position Icon and nav bar */
+header {
+  display: flex;
+  align-items: center;
+}
+
+header nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+header a img {
+  width: 100px;
+}
+
+nav ul {
+  display: flex;
+  flex-flow: row wrap;
+  list-style-type: none;
+}
+
+.show-items {
+  display: flex;
+}
+
+nav a {
+  padding: 10px;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: rgb(255, 173, 22);
+}
+
+/* hide icons for responsive nav bar by default */
+.toggle, .menu-label {
+  display: none;
+}
+
+.menu-label {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+footer {
+  margin-top: 10px;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.disclaimer {
+  text-align: center;
+  font-style: italic;
+}
+
+/* Vertical list of nav links in footer */
+#footer-nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.contact {
+  align-self: center;
+}
+
+#map {
+  width: 250px;
+  height: 150px;
+}
+
+/* 
+  For responsive nav bar and footer
+  2 breakpoints (600 px and 660 px) are used because header and footer
+  break at different widths
+*/
+@media (max-width: 660px) {
+  nav .toggle, nav .menu-label {
+    display: flex;
+    align-self: center;
+  }
+
+  nav .toggle {
+    cursor: pointer;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  #nav-items a {
+    padding: 0;
+    font-size: 2.2rem;
+  }
+}
+@media (max-width: 600px) {
+  footer {
+    flex-direction: column;
+    margin-left: 5px;
+  }
+
+  iframe {
+    margin-top: 10px;
+    align-self: center;
+  }
+
+  .facebook {
+    align-self: flex-end;
+  }
+}

@@ -1,0 +1,24 @@
+main {
+  display: flex;
+  flex-direction: column;
+}
+
+/* align-self not needed for table */
+h1, .note {
+  align-self: center;
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+}
+
+/*For Menu Categories*/
+caption {
+  font-size: 2.6rem;
+  font-weight: bold;
+}
+
+.menu section {
+  padding: 0 1%;
+}
