@@ -3,7 +3,14 @@
   <link rel="stylesheet" href="styles/menu-style.css" />
 </head>
 <?php include "templates/header.php" ?>
-    <h1>Menu</h1>
+  <h1>Menu</h1>
+
+  <?php $conn = mysqli_connect('localhost', 'root', '', 'dgl123-project');
+
+  $sql = "SELECT * FROM menu_hotdrinks";
+  $results = $conn->query($sql); ?>
+
+  <?php if ($results->num_rows > 0) : ?>
     <div class="menu">
       <div>
         <table>
@@ -16,101 +23,19 @@
             <td>16oz</td>
             <td>20oz</td>
           </tr>
-          <tr>
-            <td>Tea</td>
-            <td>2.50</td>
-            <td>2.50</td>
-            <td>2.50</td>
-          </tr>
-          <tr>
-            <td>Matcha Tea</td>
-            <td>3.55</td>
-            <td>4.01</td>
-            <td>4.49</td>
-          </tr>
-          <tr>
-            <td>Chai Tea Latte</td>
-            <td>3.79</td>
-            <td>4.29</td>
-            <td>4.71</td>
-          </tr>
-          <tr>
-            <td>London Fog</td>
-            <td>3.55</td>
-            <td>4.01</td>
-            <td>4.49</td>
-          </tr>
-          <tr>
-            <td>Hot Chocolate</td>
-            <td>3.22</td>
-            <td>3.89</td>
-            <td>4.38</td>
-          </tr>
-          <tr>
-            <td>Steamer</td>
-            <td>3.02</td>
-            <td>3.49</td>
-            <td>3.83</td>
-          </tr>
-          <tr>
-            <td>Flavored Steamer</td>
-            <td>3.81</td>
-            <td>4.29</td>
-            <td>4.59</td>
-          </tr>
-          <tr>
-            <td colspan="4"><b>COFFEE</b></td>
-          </tr>
-          <tr>
-            <td>Brewed Coffee</td>
-            <td>2.13</td>
-            <td>2.37</td>
-            <td>2.73</td>
-          </tr>
-          <tr>
-            <td>Latte</td>
-            <td>3.81</td>
-            <td>4.35</td>
-            <td>4.61</td>
-          </tr>
-          <tr>
-            <td>Cappuccino</td>
-            <td>3.92</td>
-            <td>4.49</td>
-            <td>4.97</td>
-          </tr>
-          <tr>
-            <td>Caramel Macchiato</td>
-            <td>4.49</td>
-            <td>5.09</td>
-            <td>5.61</td>
-          </tr>
-          <tr>
-            <td>Mocha</td>
-            <td>4.69</td>
-            <td>5.20</td>
-            <td>5.70</td>
-          </tr>
-          <tr>
-            <td>Flavored Mocha</td>
-            <td>5.20</td>
-            <td>5.70</td>
-            <td>6.04</td>
-          </tr>
-          <tr>
-            <td>Americano</td>
-            <td>2.79</td>
-            <td>3.40</td>
-            <td>4.01</td>
-          </tr>
-          <tr>
-            <td>Espresso</td>
-            <td>2.52</td>
-            <td>3.36</td>
-            <td>4.20</td>
-          </tr>
+          <?php while($row = $results->fetch_assoc()) : ?>
+            <tr>
+            <td><?= $row['drink'] ?></td>
+            <td><?= $row['priceSmall'] ?></td>
+            <td><?= $row['priceMed'] ?></td>
+            <td><?= $row['priceLarge'] ?></td>
+            </tr>
+          <?php endwhile ?>
         </table>
       </div>
+  <?php else : ?>
+    <p>ERROR: Menu not available at this moment</p>
+  <?php endif ?>
 
       <div>
         <table>
