@@ -7,7 +7,7 @@
 
   <?php $conn = mysqli_connect('localhost', 'root', '', 'dgl123-project');
 
-  $sql = "SELECT * FROM menu_hotdrinks";
+  $sql = "SELECT * FROM menu_hotdrinks ORDER BY id ASC";
   $results = $conn->query($sql);
 
   if ($results->num_rows > 0) : ?>
@@ -41,7 +41,7 @@
     <p>ERROR: Menu not available at this moment</p>
   <?php endif ?>
 
-  <?php $sql = "SELECT * FROM menu_frappe";
+  <?php $sql = "SELECT * FROM menu_frappe ORDER BY id ASC";
   $results = $conn->query($sql);
   if ($results->num_rows > 0) : ?>
       <div>
@@ -72,7 +72,7 @@
       <?php else : ?>
       <p>ERROR: Menu not available at this moment</p>
       <?php endif ?>
-      <?php $sql = "SELECT * FROM menu_overice";
+      <?php $sql = "SELECT * FROM menu_overice ORDER BY id ASC";
       $results = $conn->query($sql);
       if ($results->num_rows > 0) : ?>
       <div>
