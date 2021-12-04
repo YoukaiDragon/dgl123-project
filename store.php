@@ -7,24 +7,24 @@
     <div id="featured">
       <h2>Featured</h2>
       <div id="featured-products">
-        <figure>
-          <img src="images/Waterdeep.JPG" alt="Lords of Waterdeep" width="100" />
-          <figcaption>Lords of Waterdeep<span class="price"><br>$50.99</span></figcaption>
-        </figure>
-        <figure>
-          <img src="images/BetrayalAtHouse.JPG" alt="Betrayal at House on the Hill" width="100" />
-          <figcaption>Betrayal at House on the Hill<span class="price"><br>$54.99</span></figcaption>
-        </figure>
-        <figure>
-          <img src="images/ForgottenRealmsBundle.png" alt="Forgotten Realms Bundle" width="100" />
-          <figcaption>Forgotten Realms Bundle<span class="price"><br>$44.99</span></figcaption>
-        </figure>
-        <figure>
-          <img src="images/TombOfAnnil-TrapsSet.jpg" width="100" />
-          <figcaption>
-            Icons of the Realms Tomb of Annihliation: Tombs and Traps Premium Set <span class="price"><br>$50.00</span>
-          </figcaption>
-        </figure>
+        <?php $conn = mysqli_connect('localhost', 'root', '', 'dgl123-project');
+
+        $sql = "SELECT * FROM store_featured ORDER BY id ASC";
+        $results = $conn->query($sql);
+
+        if ($results->num_rows > 0) : ?>
+          <?php while($row = $results->fetch_assoc()) : ?>
+            <?php $link = $row['link'];
+            $name = $row['name'];
+            $price = $row['price'];?>
+            <figure>
+              <?php echo "<img src=$link alt=$name width='100' />";
+              echo "<figcaption>$name <span class='price'><br>$$price </span></figcaption>";?>
+            </figure>
+          <?php endwhile?>
+        <?php else : ?>
+          <p>ERROR: Store content not available</p>
+        <?php endif ?>
       </div>
     </div>
 
@@ -43,108 +43,63 @@
 
     <div id="Board" class="tabcontent">
       <h2>Board Games</h2>
-      <figure>
-        <img src="images/Waterdeep.JPG" alt="Lords of Waterdeep" width="100" />
-        <figcaption>Lords of Waterdeep<span class="price"><br>$50.99</span></figcaption>
-      </figure>
-      <figure>
-        <img src="images/Catan.JPG" alt="Settlers of Catan" width="100" />
-        <figcaption>Setters of Catan<span class="price"><br>$47.99</span></figcaption>
-      </figure>
-      <figure>
-        <img src="images/Takenoko.JPG" alt="Takenoko" width="100" />
-        <figcaption>Takenoko<span class="price"><br>$51.99</span></figcaption>
-      </figure>
-      <figure>
-        <img src="images/BetrayalAtHouse.JPG" alt="Betrayal at House on the Hill" width="100" />
-        <figcaption>Betrayal at House on the Hill<span class="price"><br>$54.99</span></figcaption>
-      </figure>
-      <figure>
-        <img src="images/Betrayal-WidowsWalk.JPG" alt="Betrayl at House on the Hill: Widows Walk" width="100" />
-        <figcaption>
-          Betrayal at House on the Hill: Widow's Walk Expansion<span class="price"><br>$44.99</span>
-        </figcaption>
-      </figure>
-      <figure>
-        <img src="images/TerraformMars.JPG" alt="Terraforming Mars" width="100" />
-        <figcaption>Terraforming Mars<span class="price"><br>$59.99</span></figcaption>
-      </figure>
-      <figure>
-        <img src="images/Citadels.JPG" alt="Citadels" width="100" />
-        <figcaption>Citadels<span class="price"><br>$19.99</span></figcaption>
-      </figure>
-      <figure>
-        <img src="images/ElderSign.JPG" alt="Elder Sign" width="100" />
-        <figcaption>Elder Sign<span class="price"><br>$37.99</span></figcaption>
-      </figure>
-      <figure>
-        <img src="images/SmashUp.JPG" alt="Smash Up" width="100" />
-        <figcaption>Smash Up<span class="price"><br>$30.99</span></figcaption>
-      </figure>
-      <figure>
-        <img src="images/Smash-Awesome.JPG" alt="Smash Up: Awesome Level 9000" width="100" />
-        <figcaption>Smash Up: Awesome Level 9000<span class="price"><br>$21.89</span></figcaption>
-      </figure>
-      <figure>
-        <img src="images/Smash-YourFault.JPG" alt="Smash Up: It's Your Fault!" width="100" />
-        <figcaption>Smash Up: It's Your Fault!<span class="price"><br>$24.99</span></figcaption>
-      </figure>
+      <?php $sql = "SELECT * FROM store_boardgames ORDER BY id ASC";
+        $results = $conn->query($sql);
+
+        if ($results->num_rows > 0) : ?>
+          <?php while($row = $results->fetch_assoc()) : ?>
+            <?php $link = $row['link'];
+            $name = $row['name'];
+            $price = $row['price'];?>
+            <figure>
+              <?php echo "<img src=$link alt=$name width='100' />";
+              echo "<figcaption>$name <span class='price'><br>$$price </span></figcaption>";?>
+            </figure>
+          <?php endwhile?>
+        <?php else : ?>
+          <p>ERROR: Store content not available</p>
+        <?php endif ?>
     </div>
 
     <div id="Cards" class="tabcontent">
       <h2>MTG Cards</h2>
       <p class="note">Many MTG singles also available in store!</p>
-      <figure>
-        <img src="images/Commander2019.png" alt="Commander 2019 Decks" width="100" />
-        <figcaption>Commander 2019 Decks<span class="price"><br>$69.99</span></figcaption>
-      </figure>
-      <figure>
-        <img src="images/IkoriaCommander.jpg" alt="Ikoria Commander Decks" width="100" />
-        <figcaption>Ikoria Commander Decks<span class="price"><br>$64.99</span></figcaption>
-      </figure>
-      <figure>
-        <img src="images/MTGChallenger.jpg" alt="MTG Challenger Decks" width="100" />
-        <figcaption>Challenger Decks<span class="price"><br>$34.99</span></figcaption>
-      </figure>
-      <figure>
-        <img src="images/ForgottenRealmsBundle.png" alt="Forgotten Realms Bundle" width="100" />
-        <figcaption>Forgotten Realms Bundle<span class="price"><br>$44.99</span></figcaption>
-      </figure>
+      <?php $sql = "SELECT * FROM store_cards ORDER BY id ASC";
+        $results = $conn->query($sql);
+
+        if ($results->num_rows > 0) : ?>
+          <?php while($row = $results->fetch_assoc()) : ?>
+            <?php $link = $row['link'];
+            $name = $row['name'];
+            $price = $row['price'];?>
+            <figure>
+              <?php echo "<img src=$link alt=$name width='100' />";
+              echo "<figcaption>$name <span class='price'><br>$$price </span></figcaption>";?>
+            </figure>
+          <?php endwhile?>
+        <?php else : ?>
+          <p>ERROR: Store content not available</p>
+        <?php endif ?>
     </div>
 
     <div id="Accessories" class="tabcontent">
       <h2>Accessories</h2>
-      <figure>
-        <img src="images/TombOfAnnil-TrapsSet.jpg" alt="Tombs of Annihilation: Tombs and Traps Premium Set"
-          width="100" />
-        <figcaption>
-          Icons of the Realms Tomb of Annihiliation: Tombs and Traps Premium Set <span class="price"><br>$50.00</span>
-        </figcaption>
-      </figure>
-      <figure>
-        <img src="images/poly-dice.jpg" alt="polyhedral dice" width="100" />
-        <figcaption>Polyhedral Dice Set<span class="price"><br>$8.99</span></figcaption>
-      </figure>
-      <figure>
-        <img src="images/bugbear_miniatures.jpg" alt="D&D miniatures" width="100" />
-        <figcaption>D&D miniatures<span class="price"><br>$4.99</span></figcaption>
-      </figure>
-      <figure>
-        <img src="images/DrgShldW.JPG" alt="Dragon Shield White Sleeves" width="100" />
-        <figcaption>Dragon Shield Sleeves: White Matte<span class="price"><br>$11.99</span></figcaption>
-      </figure>
-      <figure>
-        <img src="images/DrgShldR.JPG" alt="Dragon Shield Red Sleeves" width="100" />
-        <figcaption>Dragon Shield Sleeves: Red Matte<span class="price"><br>$11.99</span></figcaption>
-      </figure>
-      <figure>
-        <img src="images/DrgShldG.JPG" alt="Dragon Shield Green Sleeves" width="100" />
-        <figcaption>Dragon Shield Sleeves: Green Matte<span class="price"><br>$11.99</span></figcaption>
-      </figure>
-      <figure>
-        <img src="images/DrgShldSB.JPG" alt="Dragon Shield Sky Blue Sleeves" width="100" />
-        <figcaption>Dragon Shield Sleeves: Sky Blue Matte<span class="price"><br>$11.99</span></figcaption>
-      </figure>
+      <?php $sql = "SELECT * FROM store_accessories ORDER BY id ASC";
+        $results = $conn->query($sql);
+
+        if ($results->num_rows > 0) : ?>
+          <?php while($row = $results->fetch_assoc()) : ?>
+            <?php $link = $row['link'];
+            $name = $row['name'];
+            $price = $row['price'];?>
+            <figure>
+              <?php echo "<img src=$link alt=$name width='100' />";
+              echo "<figcaption>$name <span class='price'><br>$$price </span></figcaption>";?>
+            </figure>
+          <?php endwhile?>
+        <?php else : ?>
+          <p>ERROR: Store content not available</p>
+        <?php endif ?>
     </div>
 
     <script>
