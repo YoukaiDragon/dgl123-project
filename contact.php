@@ -83,6 +83,9 @@
     }
     if (isset($_POST['mail'])) {
       $email = $_POST['mail'];
+      if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        return 0;
+      }
     } else {
       //$mail is required, validation error
       return 0;
@@ -96,6 +99,10 @@
     }
     if (isset($_POST['event'])) {
       $event = $_POST['event'];
+      $event_list = array("None", "D&D", "Commander", "FNM", "Draft");
+      if (!in_array($event, $event_list)) {
+        return 0;
+      }
     }
   }
 ?>
