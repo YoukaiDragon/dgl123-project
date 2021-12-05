@@ -12,26 +12,34 @@
       <ul>
         <li>
           <label for="name">Name<span class="required">*</span>:</label>
-          <input type="text" id="name" name="name" required />
+          <input type="text" id="name" name="name" required
+            value="<?php if (isset($_POST['name'])) echo $_POST['name']; ?>" />
         </li>
         <li>
           <label for="mail">Email<span class="required">*</span>:</label>
-          <input type="email" id="mail" name="mail" required />
+          <input type="email" id="mail" name="mail" required
+            value="<?php if (isset($_POST['mail'])) echo $_POST['mail']; ?>" />
         </li>
         <li class="message">
           <label for="message">Message:</label>
-          <textarea id="message" name="message" rows="6" cols="30" maxlength="500"></textarea>
+          <textarea id="message" name="message" rows="6" cols="30" maxlength="500">
+          <?php if (isset($_POST['message'])) echo $_POST['message']; ?>
+          </textarea>
         </li>
         <li>
           <label for="event">Event:</label>
           <select id="event" name="event">
             <option value="none" selected>None</option>
-            <option value="D&D">D&D & Pizza Night (pizza: $4.99)</option>
-            <option value="Commander">
+            <option value="D&D" 
+              <?php if(isset($_POST['event'])&& $_POST['event']=="D&D") echo 'selected="selected"'; ?>>D&D & Pizza Night (pizza: $4.99)</option>
+            <option value="Commander"
+              <?php if(isset($_POST['event'])&& $_POST['event']=="Commander") echo 'selected="selected"'; ?>>
               Commander & Pizza night (seat: $4.20 pizza: $4.99)
             </option>
-            <option value="FNM">FNM ($4.20)</option>
-            <option value="Draft">MTG Draft ($19.99)</option>
+            <option value="FNM"
+              <?php if(isset($_POST['event'])&& $_POST['event']=="FNM") echo 'selected="selected"'; ?>>FNM ($4.20)</option>
+            <option value="Draft"
+              <?php if(isset($_POST['event'])&& $_POST['event']=="Draft") echo 'selected="selected"'; ?>>MTG Draft ($19.99)</option>
           </select>
         </li>
         <li>
