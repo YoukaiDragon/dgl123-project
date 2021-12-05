@@ -50,18 +50,20 @@
           </p>
         </li>
         <li>
-          <button type="submit">Submit</button>
+          <button type="submit" name="submit" value="submit">Submit</button>
         </li>
-      </ul>
-      <?php $validation = handleForm();
+      <?php if (isset($_POST['submit'])) {
+        $validation = handleForm();
         if ($validation === 1) { //data validated and saved to database
-          
+          echo "<li><p>MESSAGE SENT</p></li>";
         } else if ($validation === 0) { //data not valid
-
+          echo "<p>ERROR: invalid form data</p>";
         } else if ($validation === -1) { //data not saved to database
-
+          echo "<p>CONNECTION ERROR: there was a problem sending your message</p>";
         }
+      }
       ?>
+      </ul>
     </form>
   </main>
   <?php include "templates/footer.php" ?>
@@ -99,11 +101,12 @@
     }
     if (isset($_POST['event'])) {
       $event = $_POST['event'];
-      $event_list = array("None", "D&D", "Commander", "FNM", "Draft");
+      $event_list = array("none", "D&D", "Commander", "FNM", "Draft");
       if (!in_array($event, $event_list)) {
         return 0;
       }
     }
+    return 1;
   }
 ?>
 </html>
