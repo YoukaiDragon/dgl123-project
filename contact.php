@@ -45,9 +45,15 @@
           <button type="submit">Submit</button>
         </li>
       </ul>
-      <?php if (issset($_POST)) {
-        $validation = handleForm();
-      }
+      <?php $validation = handleForm();
+        if ($validation === 1) { //data validated and saved to database
+          
+        } else if ($validation === 0) { //data not valid
+
+        } else if ($validation === -1) { //data not saved to database
+
+        }
+      ?>
     </form>
   </main>
   <?php include "templates/footer.php" ?>
@@ -60,18 +66,29 @@
     1: no issues
   */
   function handleForm() {
-    $name = $_POST['name'];
-    $email = $_POST['mail'];
-    $message = $_POST['message'];
-    $event = $_POST['event'];
-
-    //confirm required fields exist
-
-    //confirm $email contains an email
-
-    //confirm $message is not over maximum length
-
-    //comfirm $event contains 'none' or a valid event
+    $name = $email = $message = $event = NULL;
+    if (isset($_POST['name'])) {
+      $name = $_POST['name'];
+    } else {
+      //$name is required, validation error
+      return 0;
+    }
+    if (isset($_POST['mail'])) {
+      $email = $_POST['mail'];
+    } else {
+      //$mail is required, validation error
+      return 0;
+    }
+    if (isset($_POST['message'])) {
+      $message = $_POST['message'];
+      if (strlen($message) > 500) {
+        //$message exceeds max length
+        return 0;
+      }
+    }
+    if (isset($_POST['event'])) {
+      $event = $_POST['event'];
+    }
   }
 ?>
 </html>
