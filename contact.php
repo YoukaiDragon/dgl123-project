@@ -8,7 +8,7 @@
       Contact Form for submitting name, email, an optional message, 
       and an optional request to register for an event
     -->
-    <form method="POST" action="https://learndigital.dev/programs/dgl103-form.php">
+    <form method="POST" action="contact.php">
       <ul>
         <li>
           <label for="name">Name<span class="required">*</span>:</label>
@@ -20,7 +20,7 @@
         </li>
         <li class="message">
           <label for="message">Message:</label>
-          <textarea id="message" name="message" rows="6" cols="30"></textarea>
+          <textarea id="message" name="message" rows="6" cols="30" maxlength="500"></textarea>
         </li>
         <li>
           <label for="event">Event:</label>
@@ -45,8 +45,33 @@
           <button type="submit">Submit</button>
         </li>
       </ul>
+      <?php if (issset($_POST)) {
+        $validation = handleForm();
+      }
     </form>
   </main>
   <?php include "templates/footer.php" ?>
 </body>
+<?php
+  /*
+    Validate and handle form data. Returns an integer based on results of validation and handling:
+    -1: an error was encountered when uploading form contents to database
+    0: some of the form data was invalid
+    1: no issues
+  */
+  function handleForm() {
+    $name = $_POST['name'];
+    $email = $_POST['mail'];
+    $message = $_POST['message'];
+    $event = $_POST['event'];
+
+    //confirm required fields exist
+
+    //confirm $email contains an email
+
+    //confirm $message is not over maximum length
+
+    //comfirm $event contains 'none' or a valid event
+  }
+?>
 </html>
