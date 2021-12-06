@@ -5,12 +5,8 @@
 <?php include "templates/header.php" ?>
   <h1>Menu</h1>
 
-  <?php $conn = mysqli_connect('localhost', 'root', '', 'dgl123-project');
+  <?php $conn = mysqli_connect('localhost', 'root', '', 'dgl123-project'); ?>
 
-  $sql = "SELECT * FROM menu_hotdrinks ORDER BY id ASC";
-  $results = $conn->query($sql);
-
-  if ($results->num_rows > 0) : ?>
     <div class="menu">
       <div>
         <table>
@@ -23,27 +19,36 @@
             <td>16oz</td>
             <td>20oz</td>
           </tr>
-          <?php while($row = $results->fetch_assoc()) : ?>
-            <tr>
-              <?php if ($row['drink'] ==="COFFEE") : ?>
-                <td><b><?= $row['drink'] ?></b></td>
-              <?php else : ?>
-            <td><?= $row['drink'] ?></td>
-            <?php endif ?>
-            <td><?= $row['priceSmall'] ?></td>
-            <td><?= $row['priceMed'] ?></td>
-            <td><?= $row['priceLarge'] ?></td>
-            </tr>
+          <?php $sql = "SELECT * FROM menu_hotdrinks ORDER BY id ASC";
+          $results = $conn->query($sql); ?>
+          <?php if ($results->num_rows > 0) : ?>
+            <?php while ($row = $results->fetch_assoc()) : ?>
+              <tr>
+              <td><?= $row['drink'] ?></td>
+              <td><?= $row['priceSmall'] ?></td>
+              <td><?= $row['priceMed'] ?></td>
+              <td><?= $row['priceLarge'] ?></td>
+              </tr>
           <?php endwhile ?>
+          <?php endif ?>
+          <?php $sql = "SELECT * FROM menu_hotdrinks_coffee ORDER BY id ASC";
+          $results = $conn->query($sql);
+          if($results->num_rows > 0) : ?>
+            <tr>
+              <td><b>COFFEE</b></td>
+              <td colspan=3></td>
+            </tr>
+            <?php while ($row = $results->fetch_assoc()) : ?>
+              <tr>
+              <td><?= $row['drink'] ?></td>
+              <td><?= $row['priceSmall'] ?></td>
+              <td><?= $row['priceMed'] ?></td>
+              <td><?= $row['priceLarge'] ?></td>
+              </tr>
+            <?php endwhile ?>
+            <?php endif ?>
         </table>
       </div>
-  <?php else : ?>
-    <p>ERROR: Menu not available at this moment</p>
-  <?php endif ?>
-
-  <?php $sql = "SELECT * FROM menu_frappe ORDER BY id ASC";
-  $results = $conn->query($sql);
-  if ($results->num_rows > 0) : ?>
       <div>
         <table>
           <caption>
@@ -55,26 +60,38 @@
             <td>16oz</td>
             <td>20oz</td>
           </tr>
-          <?php while($row = $results->fetch_assoc()) : ?>
-            <tr>
-            <?php if ($row['drink'] ==="COFFEE") : ?>
-                <td><b><?= $row['drink'] ?></b></td>
-              <?php else : ?>
-            <td><?= $row['drink'] ?></td>
-            <?php endif ?>
-            <td><?= $row['priceSmall'] ?></td>
-            <td><?= $row['priceMed'] ?></td>
-            <td><?= $row['priceLarge'] ?></td>
-            </tr>
+          <?php $sql = "SELECT * FROM menu_frappe ORDER BY id ASC";
+          $results = $conn->query($sql); ?>
+          <?php if ($results->num_rows > 0) : ?>
+            <?php while ($row = $results->fetch_assoc()) : ?>
+              <tr>
+              <td><?= $row['drink'] ?></td>
+              <td><?= $row['priceSmall'] ?></td>
+              <td><?= $row['priceMed'] ?></td>
+              <td><?= $row['priceLarge'] ?></td>
+              </tr>
           <?php endwhile ?>
+          <?php endif ?>
+          <?php $sql = "SELECT * FROM menu_frappe_coffee ORDER BY id ASC";
+          $results = $conn->query($sql);
+          if($results->num_rows > 0) : ?>
+            <tr>
+              <td><b>COFFEE</b></td>
+              <td>1 Shot</td>
+              <td>2 Shots</td>
+              <td>3 Shots</td>
+            </tr>
+            <?php while ($row = $results->fetch_assoc()) : ?>
+              <tr>
+              <td><?= $row['drink'] ?></td>
+              <td><?= $row['priceSmall'] ?></td>
+              <td><?= $row['priceMed'] ?></td>
+              <td><?= $row['priceLarge'] ?></td>
+              </tr>
+            <?php endwhile ?>
+            <?php endif ?>          
         </table>
       </div>
-      <?php else : ?>
-      <p>ERROR: Menu not available at this moment</p>
-      <?php endif ?>
-      <?php $sql = "SELECT * FROM menu_overice ORDER BY id ASC";
-      $results = $conn->query($sql);
-      if ($results->num_rows > 0) : ?>
       <div>
         <table>
           <caption>
@@ -86,23 +103,36 @@
             <td>16oz</td>
             <td>20oz</td>
           </tr>
-          <?php while($row = $results->fetch_assoc()) : ?>
-            <tr>
-            <?php if ($row['drink'] ==="COFFEE") : ?>
-                <td><b><?= $row['drink'] ?></b></td>
-              <?php else : ?>
-            <td><?= $row['drink'] ?></td>
-            <?php endif ?>
-            <td><?= $row['priceSmall'] ?></td>
-            <td><?= $row['priceMed'] ?></td>
-            <td><?= $row['priceLarge'] ?></td>
-            </tr>
+          <?php $sql = "SELECT * FROM menu_overice ORDER BY id ASC";
+          $results = $conn->query($sql); ?>
+          <?php if ($results->num_rows > 0) : ?>
+            <?php while ($row = $results->fetch_assoc()) : ?>
+              <tr>
+              <td><?= $row['drink'] ?></td>
+              <td><?= $row['priceSmall'] ?></td>
+              <td><?= $row['priceMed'] ?></td>
+              <td><?= $row['priceLarge'] ?></td>
+              </tr>
           <?php endwhile ?>
+          <?php endif ?>
+          <?php $sql = "SELECT * FROM menu_overice_coffee ORDER BY id ASC";
+          $results = $conn->query($sql);
+          if($results->num_rows > 0) : ?>
+            <tr>
+              <td><b>COFFEE</b></td>
+              <td colspan=3></td>
+            </tr>
+            <?php while ($row = $results->fetch_assoc()) : ?>
+              <tr>
+              <td><?= $row['drink'] ?></td>
+              <td><?= $row['priceSmall'] ?></td>
+              <td><?= $row['priceMed'] ?></td>
+              <td><?= $row['priceLarge'] ?></td>
+              </tr>
+            <?php endwhile ?>
+            <?php endif ?>
         </table>
       </div>
-      <?php else : ?>
-      <p>ERROR: Menu not available at this moment</p>
-      <?php endif ?>
     </div>
     <div class="note">
       <p>Flavor Shot 0.85 Subst. Soy/Almond 1.00</p>
