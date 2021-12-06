@@ -106,7 +106,17 @@
         return 0;
       }
     }
-    return 1;
+
+    //send form data to database
+    $conn = mysqli_connect('localhost', 'root', '', 'dgl123-project');
+    $sql = "INSERT INTO contact_data (customerName, email, activity, comment) VALUES (?, ?, ?, ?)";
+    $statement = $conn->prepare($sql);
+    $statement->bind_param('ssss', $name, $email, $event, $message);
+    if ($statement->execute()) {
+      return 1;
+    } else {
+      return -1;
+    }
   }
 ?>
 </html>
