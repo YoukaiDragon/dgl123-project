@@ -2,6 +2,10 @@
   <title>Games & Grounds Contact</title>
   <link rel="stylesheet" href="styles/contact-style.css" />
 </head>
+<?php 
+//Ensure this list contains the names for all of the event options in the form
+$event_list = array("none", "D&D", "Commander", "FNM", "Draft"); 
+?>
 <?php include "templates/header.php" ?>
     <h1>Contact Us</h1>
     <!--
@@ -53,7 +57,7 @@
           <button type="submit" name="submit" value="submit">Submit</button>
         </li>
       <?php if (isset($_POST['submit'])) {
-        $validation = handleForm();
+        $validation = handleForm($event_list);
         if ($validation === 1) { //data validated and saved to database
           echo "<li><p>MESSAGE SENT</p></li>";
         } else if ($validation === 0) { //data not valid
@@ -75,7 +79,7 @@
     0: some of the form data was invalid
     1: no issues
   */
-  function handleForm() {
+  function handleForm($event_list) {
     $name = $email = $message = $event = NULL;
     if (isset($_POST['name'])) {
       $name = $_POST['name'];
@@ -101,15 +105,20 @@
     }
     if (isset($_POST['event'])) {
       $event = $_POST['event'];
-      $event_list = array("none", "D&D", "Commander", "FNM", "Draft");
       if (!in_array($event, $event_list)) {
         return 0;
       }
     }
+    //table name is set outside of uploadFormData to allow the test code to use a separate table
+    $table = 'contact_data';
+    return uploadFormData($table, $name, $email, $event, $message);
+  }
 
-    //send form data to database
+
+  //send form data to database
+  function uploadFormData($table, $name, $email, $event, $message){
     $conn = mysqli_connect('localhost', 'root', '', 'dgl123-project');
-    $sql = "INSERT INTO contact_data (customerName, email, activity, comment) VALUES (?, ?, ?, ?)";
+    $sql = "INSERT INTO $table (customerName, email, activity, comment) VALUES (?, ?, ?, ?)";
     $statement = $conn->prepare($sql);
     $statement->bind_param('ssss', $name, $email, $event, $message);
     if ($statement->execute()) {
