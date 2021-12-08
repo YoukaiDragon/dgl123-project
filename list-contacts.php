@@ -21,7 +21,7 @@ if (isset($_POST['paid']) && is_numeric($_POST['paid'])) {
   updateBoolColumn($conn, $_POST['paid'], 'paid', 1);
 }
 
-if (isset($_POST['delete']) && is_numeric($_POST['paid'])) {
+if (isset($_POST['delete']) && is_numeric($_POST['delete'])) {
   //update 'visible' column of table so that it is no longer displayed by the page
   updateBoolColumn($conn, $_POST['delete'], 'visible', 0);
 }
