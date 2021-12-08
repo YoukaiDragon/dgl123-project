@@ -3,6 +3,7 @@ NOTE: Before checking the website, please remember to import dgl123-project.sql 
 This code uses 'root' as the username and '' for the password to connect to the database.
 If your instance of phpMyAdmin uses a different username and password, please change all instances
 of "conn = mysqli_connect('localhost', 'root', '', 'dgl123-project');" to use your username and password
+
 This project submission makes the following changes to my HTML website project:
 
 1: using templates on all pages
