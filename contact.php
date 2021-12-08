@@ -3,6 +3,7 @@
   <link rel="stylesheet" href="styles/contact-style.css" />
 </head>
 <?php 
+date_default_timezone_set('America/Vancouver');
 //Ensure this list contains the names for all of the event options in the form
 $event_list = array("none", "D&D", "Commander", "FNM", "Draft"); 
 ?>
@@ -132,7 +133,7 @@ $event_list = array("none", "D&D", "Commander", "FNM", "Draft");
   //send form data to database
   function uploadFormData($table, $name, $email, $event, $message){
     $conn = mysqli_connect('localhost', 'root', '', 'dgl123-project');
-    $sql = "INSERT INTO $table (customerName, email, activity, comment) VALUES (?, ?, ?, ?)";
+    $sql = "INSERT INTO $table (customerName, email, messageDate, activity, comment) VALUES (?, ?, NOW(), ?, ?)";
     $statement = $conn->prepare($sql);
     $statement->bind_param('ssss', $name, $email, $event, $message);
     if ($statement->execute()) {

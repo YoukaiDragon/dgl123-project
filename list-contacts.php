@@ -36,6 +36,7 @@ $results = $conn->query($sql);
   <tr>
     <th>name</th>
     <th>email</th>
+    <th>time sent</th>
     <th>event</th>
     <th>paid</th>
     <th></th> <!--column for 'payment received' button -->
@@ -46,6 +47,7 @@ $results = $conn->query($sql);
     <tr>
       <td><?= $row['customerName']; ?></td>
       <td><?= $row['email']; ?></td>
+      <td><?= convertTime($row['messageDate']); ?></td>
       <td><?= $row['activity']; ?></td>
       <?php if ($row['paid'] == 1) :?>
         <td colspan=2>YES</td>
@@ -80,4 +82,9 @@ the name of the column to be changed, and the new value for the column
 function updateBoolColumn($conn, $row, $column, $value) {
   $sql = "UPDATE contact_data SET $column = $value WHERE id=$row";
   $results = $conn->query($sql);
+}
+
+//function to convert date format from 24-hour to 12-hour
+function convertTime($dateTime) {
+  return (date('Y-m-d h:i:s a', strtotime($dateTime)));
 }
