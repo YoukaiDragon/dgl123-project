@@ -28,7 +28,7 @@ $event_list = array("none", "D&D", "Commander", "FNM", "Draft");
         <li class="message">
           <label for="message">Message:</label>
           <textarea id="message" name="message" rows="6" cols="30" maxlength="500">
-          <?php if (isset($_POST['message'])) echo $_POST['message']; ?>
+          <?php if (isset($_POST['message'])) echo trim($_POST['message']); ?>
           </textarea>
         </li>
         <li>
@@ -104,7 +104,7 @@ $event_list = array("none", "D&D", "Commander", "FNM", "Draft");
       return 0;
     }
     if (isset($_POST['message'])) {
-      $message = $_POST['message'];
+      $message = trim($_POST['message']);
       if (strlen($message) > 500) {
         //$message exceeds max length
         return 0;
