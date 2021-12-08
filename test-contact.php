@@ -29,12 +29,57 @@ being tested, to ensure that there is only 1 field that could cause the validati
 $goodName = "Valid";
 $goodEmail = "valid@goodexample.com";
 $goodMessage = "This is a valid message.";
-$goodEvent = "none";
+$goodEvent = "Commander";
 
 echo "<p>BELOW TEST MUST PASS FOR OTHER VALIDATION TESTS TO BE RELIABLE</p>";
 validationTest("good", true, $goodName, $goodEmail, $goodMessage, $goodEvent, $event_list);
 echo "<p>ABOVE TEST MUST PASS FOR OTHER VALIDATION TESTS TO BE RELIABLE</p>";
 
+//bad input tests
+
+//missing values
+//submission must include name
+$badName = NULL;
+validationTest ("No Name", false, $badName, $goodEmail, $goodMessage, $goodEvent, $event_list);
+
+//submission must include email
+$badEmail = NULL;
+validationTest ("No Email", false, $goodName, $badEmail, $goodMessage, $goodEvent, $event_list);
+
+//missing message is ok
+$badMessage = NULL;
+validationTest ("No message", true, $goodName, $goodEmail, $badMessage, $goodEvent, $event_list);
+
+//NULL event should default to 'none' which is acceptable
+$badEvent = NULL;
+validationTest ("No Event", true, $goodName, $goodEmail, $goodMessage, $badEvent, $event_list);
+
+//bad values
+
+//name validation only checks if there is a value
+
+//email validation
+//not an email
+$badEmail = "NotAnEmail";
+validationTest ("Not Email", false, $goodName, $badEmail, $goodMessage, $goodEvent, $event_list);
+
+//multiple emails
+$badEmail = "test1@example.com test2@moreexamples.com";
+validationTest ("Multiple Emails", false, $goodName, $badEmail, $goodMessage, $goodEvent, $event_list);
+
+//test for too long string
+$badMessage = "a";
+//for loop used to generate string > 500 characters long
+for ($x = 0; $x < 501; $x++) {
+  $badMessage .= "a";
+}
+validationTest ("Message Too Long", false, $goodName, $goodEmail, $badMessage, $goodEvent, $event_list);
+
+//bad event
+$badEvent = "Not a real event";
+validationTest ("Bad Event", false, $goodName, $goodEmail, $goodMessage, $badEvent, $event_list);
+
+echo "<p>VALIDATION TESTING COMPLETE</p>";
 
 
 //delete test table when done
@@ -50,11 +95,14 @@ function validationTest($test, $expected, $name, $email, $message, $event, $even
   $_POST['mail'] = $email;
   $_POST['message'] = $message;
   $_POST['event'] = $event;
-
   //test the loaded input
   if (handleForm($event_list, true) == $expected) {
     echo "<p>TEST FOR $test PASSED</p>";
   } else {
     echo "<p>TEST FOR $test FAILED</p>";
   }
+}
+
+function uploadTest($tableNme, $test, $expected, $name, $email, $message, $event) {
+
 }
