@@ -14,16 +14,18 @@ includes buttons to mark event bookings as paid, and to stop displaying an entry
 <?php
 //set up connection
 $conn = mysqli_connect('localhost', 'root', '', 'dgl123-project');
+//tableName variable used to make update function compatible with testing
+$table = 'contact_data';
 
 //update entry if a button was clicked
 if (isset($_POST['paid']) && is_numeric($_POST['paid'])) {
   //update 'paid' column of entry associated with the button
-  updateBoolColumn($conn, $_POST['paid'], 'paid', 1);
+  updateBoolColumn($table, $conn, $_POST['paid'], 'paid', 1);
 }
 
 if (isset($_POST['delete']) && is_numeric($_POST['delete'])) {
   //update 'visible' column of table so that it is no longer displayed by the page
-  updateBoolColumn($conn, $_POST['delete'], 'visible', 0);
+  updateBoolColumn($table, $conn, $_POST['delete'], 'visible', 0);
 }
 
 //grab and display table data
@@ -79,9 +81,10 @@ $results = $conn->query($sql);
 input is the connection, the id of the row to be changed, 
 the name of the column to be changed, and the new value for the column
 */
-function updateBoolColumn($conn, $row, $column, $value) {
-  $sql = "UPDATE contact_data SET $column = $value WHERE id=$row";
-  $results = $conn->query($sql);
+function updateBoolColumn($table, $conn, $row, $column, $value) {
+  $sql = "UPDATE $table SET $column = $value WHERE id=$row";
+  $conn->query($sql);
+  return $conn->affected_rows;
 }
 
 //function to convert date format from 24-hour to 12-hour
