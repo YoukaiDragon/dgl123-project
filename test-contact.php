@@ -11,15 +11,15 @@ $tableName = "testTable";
 $conn = mysqli_connect('localhost', 'root', '', 'dgl123-project');
 $event_list = array("none", "D&D", "Commander", "FNM", "Draft");
 //make a table that copies the format of contact_data
-$sql = "CREATE TABLE $tableName (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+$sql = "CREATE TABLE `$tableName` (
+  `id` int(11) NOT NULL,
   `customerName` varchar(255) COLLATE utf8_bin NOT NULL,
   `email` varchar(255) COLLATE utf8_bin NOT NULL,
+  `messageDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `activity` varchar(255) COLLATE utf8_bin NOT NULL,
   `paid` tinyint(1) NOT NULL DEFAULT '0',
   `comment` varchar(500) COLLATE utf8_bin DEFAULT NULL,
-  `visible` tinyint(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
+  `visible` tinyint(1) NOT NULL DEFAULT '1'
 )";
 $results = $conn->query($sql);
 /*
@@ -56,8 +56,6 @@ validationTest("No Event", true, $goodName, $goodEmail, $goodMessage, $badEvent,
 
 //bad values
 
-//name validation only checks if there is a value
-
 //email validation
 //not an email
 $badEmail = "NotAnEmail";
@@ -80,7 +78,8 @@ $badEvent = "Not a real event";
 validationTest("Bad Event", false, $goodName, $goodEmail, $goodMessage, $badEvent, $event_list);
 
 echo "<p>VALIDATION TESTING COMPLETE</p>";
-
+//name validation only checks if there is a value
+echo "<p>BEGIN DATABASE UPLOAD TESTS</p>";
 //database upload testing
 //NOTE: uploadFormData returns 1 or -1 for true and false, so set $expected to those values
 uploadTest($tableName, "good input upload", 1, $goodName, $goodEmail, $goodMessage, $goodEvent);
