@@ -9,6 +9,7 @@ includes buttons to mark event bookings as paid, and to stop displaying an entry
 <head>
 <meta charset="utf-8" />
 </head>
+<body>
 
 <?php
 //set up connection
@@ -31,16 +32,16 @@ $results = $conn->query($sql);
 ?>
 
 <?php if ($results->num_rows > 0) : ?>
-  <table>
-    <tr>
-      <th>name</th>
-      <th>email</th>
-      <th>event</th>
-      <th>paid</th>
-      <th></th> <!--column for 'payment received' button -->
-      <th>comment</th>
-      <th></th> <!-- column for 'remove entry' button -->
-    </tr>
+<table>
+  <tr>
+    <th>name</th>
+    <th>email</th>
+    <th>event</th>
+    <th>paid</th>
+    <th></th> <!--column for 'payment received' button -->
+    <th>comment</th>
+    <th></th> <!-- column for 'remove entry' button -->
+  </tr>
   <?php while ($row = $results->fetch_assoc()) : ?>
     <tr>
       <td><?= $row['customerName']; ?></td>
@@ -66,7 +67,10 @@ $results = $conn->query($sql);
       </td>
     </tr>
   <?php endwhile ?>
-<?php endif ?>
+  <?php endif ?>
+</table>
+</body>
+</html>
 
 <?php
 /*function to update a boolean column in the table
