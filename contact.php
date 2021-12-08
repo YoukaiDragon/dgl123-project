@@ -114,6 +114,9 @@ $event_list = array("none", "D&D", "Commander", "FNM", "Draft");
       if (!in_array($event, $event_list)) {
         return 0;
       }
+    } else {
+      //if event is not set, default to 'none'
+      $_POST['event'] = 'none';
     }
     //return 1 if code is being tested, or upload form data if being run for real
     if ($isTest) {
