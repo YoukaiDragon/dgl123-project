@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 08, 2021 at 06:35 AM
+-- Generation Time: Dec 08, 2021 at 10:26 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -32,6 +32,7 @@ CREATE TABLE `contact_data` (
   `id` int(11) NOT NULL,
   `customerName` varchar(255) COLLATE utf8_bin NOT NULL,
   `email` varchar(255) COLLATE utf8_bin NOT NULL,
+  `messageDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `activity` varchar(255) COLLATE utf8_bin NOT NULL,
   `paid` tinyint(1) NOT NULL DEFAULT '0',
   `comment` varchar(500) COLLATE utf8_bin DEFAULT NULL,
@@ -42,12 +43,12 @@ CREATE TABLE `contact_data` (
 -- Dumping data for table `contact_data`
 --
 
-INSERT INTO `contact_data` (`id`, `customerName`, `email`, `activity`, `paid`, `comment`, `visible`) VALUES
-(1, 'test', 'test@example.com', 'Commander', 0, '                                                                                                    ', 1),
-(2, 'Tyson Foster', 'tyson.foster@hotmail.com', 'Draft', 1, 'This is a test comment.                                                                                                                        ', 0),
-(3, 'John Doe', 'johndoe@example.com', 'Draft', 0, '                                              This is a test message                                                      ', 1),
-(4, 'John Doe', 'johndoe@example.com', 'D&D', 0, '                                This is another message                                                                ', 1),
-(5, 'bob', 'bob@testing.ca', 'none', 0, '             test       ', 1);
+INSERT INTO `contact_data` (`id`, `customerName`, `email`, `messageDate`, `activity`, `paid`, `comment`, `visible`) VALUES
+(8, 'John Doe', 'jdoe@example.com', '2021-12-08 13:14:41', 'Draft', 0, 'This is a test message            ', 1),
+(9, 'Bob', 'bob@example.com', '2021-12-08 13:21:04', 'D&D', 1, '          This is a test message                      ', 0),
+(10, 'Rob Johnson', 'rj@testing.com', '2021-12-08 13:23:10', 'Commander', 0, 'This is also a test message                             ', 1),
+(11, 'Tyson', 'moretesting@example.com', '2021-12-08 13:23:37', 'Commander', 1, 'No Pizza                    ', 1),
+(12, 'Tyson', 'moretesting@example.com', '2021-12-08 13:24:46', 'Draft', 0, '        ', 1);
 
 -- --------------------------------------------------------
 
@@ -388,7 +389,7 @@ ALTER TABLE `store_featured`
 -- AUTO_INCREMENT for table `contact_data`
 --
 ALTER TABLE `contact_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `menu_frappe`
