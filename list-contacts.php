@@ -16,12 +16,12 @@ includes buttons to mark event bookings as paid, and to stop displaying an entry
 $conn = mysqli_connect('localhost', 'root', '', 'dgl123-project');
 
 //update entry if a button was clicked
-if (isset($_POST['paid'])) {
+if (isset($_POST['paid']) && is_numeric($_POST['paid'])) {
   //update 'paid' column of entry associated with the button
   updateBoolColumn($conn, $_POST['paid'], 'paid', 1);
 }
 
-if (isset($_POST['delete'])) {
+if (isset($_POST['delete']) && is_numeric($_POST['paid'])) {
   //update 'visible' column of table so that it is no longer displayed by the page
   updateBoolColumn($conn, $_POST['delete'], 'visible', 0);
 }
