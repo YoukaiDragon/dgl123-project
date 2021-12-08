@@ -19,7 +19,14 @@
             <td>16oz</td>
             <td>20oz</td>
           </tr>
-          <?php $sql = "SELECT * FROM menu_hotdrinks ORDER BY id ASC";
+          <?php 
+          /*
+          NOTE: this page pulls data from the tables that start with 'menu_'
+          all menu sections are ordered by the id column
+          when editing the menu tables, ensure content is in the desired order when
+          sorted on the id column from lowest to highest
+          */
+          $sql = "SELECT * FROM menu_hotdrinks ORDER BY id ASC";
           $results = $conn->query($sql); ?>
           <?php if ($results->num_rows > 0) : ?>
             <?php while ($row = $results->fetch_assoc()) : ?>

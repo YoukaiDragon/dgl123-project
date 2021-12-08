@@ -8,7 +8,12 @@
       <h2>Featured</h2>
       <div id="featured-products">
         <?php $conn = mysqli_connect('localhost', 'root', '', 'dgl123-project');
-
+        /*
+          NOTE: this page pulls data from the tables that start with 'store_'
+          all menu sections are ordered by the id column
+          when editing the menu tables, ensure content is in the desired order when
+          sorted on the id column from lowest to highest
+          */
         $sql = "SELECT * FROM store_featured ORDER BY id ASC";
         $results = $conn->query($sql);
 

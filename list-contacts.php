@@ -2,7 +2,7 @@
 <html lang="en">
 <!--
 Tyson Foster dgl123
-A page that displays entries from the contact_data table
+A page separate from the main website that displays entries from the contact_data table
 includes buttons to mark event bookings as paid, and to stop displaying an entry on the page 
 -->
 
