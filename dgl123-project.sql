@@ -44,11 +44,11 @@ CREATE TABLE `contact_data` (
 --
 
 INSERT INTO `contact_data` (`id`, `customerName`, `email`, `messageDate`, `activity`, `paid`, `comment`, `visible`) VALUES
-(8, 'John Doe', 'jdoe@example.com', '2021-12-08 13:14:41', 'Draft', 0, 'This is a test message            ', 1),
-(9, 'Bob', 'bob@example.com', '2021-12-08 13:21:04', 'D&D', 1, '          This is a test message                      ', 0),
+(8, 'John Doe', 'jdoe@example.com', '2021-12-08 13:14:41', 'Draft', 0, 'This is a test message', 1),
+(9, 'Bob', 'bob@example.com', '2021-12-08 13:21:04', 'D&D', 1, 'This is a test message', 0),
 (10, 'Rob Johnson', 'rj@testing.com', '2021-12-08 13:23:10', 'Commander', 0, 'This is also a test message                             ', 1),
-(11, 'Tyson', 'moretesting@example.com', '2021-12-08 13:23:37', 'Commander', 1, 'No Pizza                    ', 1),
-(12, 'Tyson', 'moretesting@example.com', '2021-12-08 13:24:46', 'Draft', 0, '        ', 1);
+(11, 'Tyson', 'moretesting@example.com', '2021-12-08 13:23:37', 'Commander', 1, 'No Pizza', 1),
+(12, 'Tyson', 'moretesting@example.com', '2021-12-08 13:24:46', 'Draft', 0, '', 1);
 
 -- --------------------------------------------------------
 
