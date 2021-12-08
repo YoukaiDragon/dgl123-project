@@ -85,6 +85,13 @@ echo "<p>VALIDATION TESTING COMPLETE</p>";
 //NOTE: uploadFormData returns 1 or -1 for true and false, so set $expected to those values
 uploadTest($tableName, "good input upload", 1, $goodName, $goodEmail, $goodMessage, $goodEvent);
 
+//missing mandatory values tests
+$badName = NULL;
+uploadTest($tableName, "missing name upload", -1, $badName, $goodEmail, $goodMessage, $goodEvent);
+
+$badEmail = NULL;
+uploadTest($tableName, "missing email upload", -1, $goodName, $badEmail, $goodMessage, $goodEvent);
+
 //delete test table when done
 $sql = "DROP TABLE $tableName";
 $results = $conn->query($sql);
@@ -109,7 +116,7 @@ function validationTest($test, $expected, $name, $email, $message, $event, $even
 //function for testing that uploading to the database works as expected
 //NOTE: uploadFormData returns 1 or -1 for true and false, so set $expected to those values
 function uploadTest($tableName, $test, $expected, $name, $email, $message, $event) {
-  if (uploadFormData($tableName, $name, $email, $message, $event) == $expected) {
+  if (uploadFormData($tableName, $name, $email, $message, $event) === $expected) {
     echo "<p>TEST PASSED FOR $test</p>";
   } else {
     echo "<p>TEST FAILED FOR $test</p>";
