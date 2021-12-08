@@ -22,7 +22,7 @@ $event_list = array("none", "D&D", "Commander", "FNM", "Draft");
         <li>
           <label for="mail">Email<span class="required">*</span>:</label>
           <input type="email" id="mail" name="mail" required
-            value="<?php if (isset($_POST['mail'])) echo $_POST['mail']; ?>" />
+            value="<?php if (isset($_POST['mail']))  { print htmlspecialchars($_POST['mail']); } ?>" />
         </li>
         <li class="message">
           <label for="message">Message:</label>
