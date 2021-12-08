@@ -57,7 +57,7 @@ $event_list = array("none", "D&D", "Commander", "FNM", "Draft");
           <button type="submit" name="submit" value="submit">Submit</button>
         </li>
       <?php if (isset($_POST['submit'])) {
-        $validation = handleForm($event_list);
+        $validation = handleForm($event_list, false);
         if ($validation === 1) { //data validated and saved to database
           echo "<li><p>MESSAGE SENT</p></li>";
         } else if ($validation === 0) { //data not valid
@@ -73,13 +73,19 @@ $event_list = array("none", "D&D", "Commander", "FNM", "Draft");
   <?php include "templates/footer.php" ?>
 </body>
 <?php
+  //functions used to make code testable
+
   /*
     Validate and handle form data. Returns an integer based on results of validation and handling:
     -1: an error was encountered when uploading form contents to database
     0: some of the form data was invalid
     1: no issues
+    $event_list passed in so that it can be managed at the top of the file where it is more visible
+    $isTest is a boolean flag used to indicate if the code is being run via the main website,
+    or by the test code, and is used to allow the function to be tested independantly of
+    the uploadFormData function
   */
-  function handleForm($event_list) {
+  function handleForm($event_list, $isTest) {
     $name = $email = $message = $event = NULL;
     if (isset($_POST['name'])) {
       $name = $_POST['name'];
@@ -109,9 +115,14 @@ $event_list = array("none", "D&D", "Commander", "FNM", "Draft");
         return 0;
       }
     }
-    //table name is set outside of uploadFormData to allow the test code to use a separate table
-    $table = 'contact_data';
-    return uploadFormData($table, $name, $email, $event, $message);
+    //return 1 if code is being tested, or upload form data if being run for real
+    if ($isTest) {
+      return 1;
+    } else {
+      //set table name here so that test code can use a separate table
+      $table = 'contact_data';
+      return uploadFormData($table, $name, $email, $event, $message);
+    }
   }
 
 
