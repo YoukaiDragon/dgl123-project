@@ -16,6 +16,4 @@ This project submission makes the following changes to my HTML website project:
 not connected to the main site, 'list-contacts'php' that displays submitted contact forms,
 and allows entries to be marked as having paid for their event, or hiding entries from display
 
-Also included is test-contact.php which runs unit testing on contact.php. Note that, because I don't
-know how to include the contact page in the test code while not displaying the html it contains, You will
-need to scroll below the content of the contact page to see the test results when running test-contact.php
+Also included are test-contact.php and test-list.php which run unit testing on contact.php and list-contacts.php respecively. Note that, because I don't know how to include the contact page in the test code while not displaying the html it contains, the test results will display below the content of the tested page.
